@@ -1,0 +1,47 @@
+We’re given an encrypted string and a cryptic hint:
+
+“Remember that cipher we devised together Squeexy? The one that incorporates your affinity for linear equations???”
+
+The hint strongly points toward the Affine Cipher, which is a monoalphabetic substitution cipher based on a linear transformation over modular arithmetic.
+
+The encryption formula for the Affine cipher is:
+
+𝐸(𝑥)=(𝑎⋅𝑥 + 𝑏) mod 26
+
+Where:
+
+x is the position of the plaintext letter (A=0, B=1, ..., Z=25),
+
+a and b are keys,
+
+a must be coprime with 26.
+
+🔍 Initial Test
+We were told to encrypt a known cheese, and I chose:
+
+Plaintext: CHEDDAR
+The program responded with:
+Ciphertext: GBEFFIR
+
+🔓 Cracking the Cipher
+To recover the encryption keys, I used dcode.fr, a well-known cipher analysis tool.
+By providing the plaintext-ciphertext pair:
+
+Plaintext: CHEDDAR
+Ciphertext: GBEFFIR
+
+The site successfully identified the Affine Cipher keys:
+a = 25
+b = 8
+
+🧠 Decrypting the Main Challenge
+The encrypted cheese given in the challenge was:
+
+Ciphertext: CIHRAEXGWA
+Using the identified key pair (a = 25, b = 8), I decrypted this using the same dcode tool and got:
+
+Decrypted: GABRIELCMI
+
+🏁 Final Step:
+
+Submit the decrypted text, And… 🎉 Flag Captured!

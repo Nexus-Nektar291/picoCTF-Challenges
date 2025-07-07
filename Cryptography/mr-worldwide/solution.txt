@@ -1,0 +1,20 @@
+picoCTF
+{
+(35.028309, 135.753082) 		2QH3+86G Kyoto, Japan
+(46.469391, 30.740883)		FP9R+Q92 Odesa, Ukraine
+(39.758949, -84.191605)		QR55+H9C Dayton, USA
+(41.015137, 28.979530)		2X8H+3R2 İstanbul, Türkiye
+(24.466667, 54.366669)		F988+MM7 Abu Dhabi - United Arab Emirates
+(3.140853, 101.693207)		4MRV+87W Kuala Lumpur, Federal Territory of Kuala Lumpur, Malaysia
+_
+(9.005401, 38.763611)		2Q47+5C9 Addis Ababa, Ethiopia
+(-3.989038, -79.203560)		2Q6W+9HP Loja, Ecuador
+(52.377956, 4.897070)		9VHW+5RP Amsterdam, Netherlands
+(41.085651, -73.858467)		34PR+7J7 Sleepy Hollow, New York, USA
+(57.790001, -152.407227)		QHRV+242 Kodiak, Alaska, USA
+(31.205753, 29.924526)		6W4F+8R2 Alexandria, Egypt
+}
+
+Flag will be first letter of all cities:
+
+picoCTF{KODIAK_ALASKA}

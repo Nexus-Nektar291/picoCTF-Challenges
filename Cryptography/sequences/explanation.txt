@@ -1,0 +1,63 @@
+Challenge: sequences (PicoCTF)
+
+Objective:
+-------------
+Recover the original flag from a provided encrypted byte sequence. 
+The encryption key is derived from a huge integer `sol`, which is the 20,000,000th term of a given recurrence relation.
+
+Approach Summary:
+----------------------
+
+1. Understand the Recurrence:
+   The challenge provides a function:
+   ```
+   m(i) = 55692 * m(i-4) - 9549 * m(i-3) + 301 * m(i-2) + 21 * m(i-1)
+   with base cases:
+   m(0) = 1
+   m(1) = 2
+   m(2) = 3
+   m(3) = 4
+   ```
+   Computing `m(2e7)` using recursion is computationally infeasible due to stack overflow and time complexity.
+
+2. Use Closed-Form Expression:
+   We paste the recurrence into WolframAlpha's recurrence solver, which gives us a closed-form expression:
+   ```
+   (1612*(-21)^i + 30685*2^(5+2i)*3^i - 1082829*13^i + 8349*17^(1+i)) / 42636
+   ```
+   This formula allows direct calculation of `m(2e7)` by plugging in i = 20000000.
+
+3. Evaluate the Closed-Form Expression:
+   - Due to the massive size of the result (10,000+ digits), WolframAlpha truncates it.
+   - So, I used **SageMathCell** (https://sagecell.sagemath.org) to evaluate the full expression and apply:
+     ```
+     mod(10^10000)
+     ```
+   - I saved the result (called `sol`) in a file called `sample.txt`.
+
+4. Verify the Solution:
+   - I implemented a script that:
+     - Reads the solution from `sample.txt`.
+     - Hashes the value using `MD5` and compares it with a predefined value to ensure correctness.
+
+5. Decrypt the Flag:
+   - I derive a SHA-256 hash of `sol` to use as the XOR key.
+   - The provided encrypted flag is XOR'd against the key to reveal the original flag.
+
+6. Output the Result:
+   - If the MD5 of `sol` matches `VERIF_KEY`, the decrypted flag is printed.
+   - Otherwise, the script exits with a failure notice.
+
+Tools Used:
+-------------
+- **WolframAlpha**: To get closed-form solution.
+- **SageMath Cell**: To compute the large expression with full digits and apply `mod(10^10000)`.
+- **Python**: For verification and decryption.
+
+Key Learnings:
+----------------
+- Rewriting large recurrence relations using closed-form formulas can help overcome computational limits.
+- Modular arithmetic with large numbers is better handled using tools like Sage.
+- MD5 and SHA256 hashes are often used in CTFs for flag/key validation and encryption.
+
+Status: ✅ Successfully retrieved the flag!
